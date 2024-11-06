@@ -68,7 +68,7 @@ public class WheelOfFortuneAIGame extends WheelOfFortune{
     public GameRecord play() {
         randomPhrase();
         phraseToMap();
-        generateHiddenPhrase();
+        generateSecretCode();
         // Main game loop
         while (characterLeft > 0) {
             char curGuess = getGuess();

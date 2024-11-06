@@ -10,7 +10,8 @@ public class MasterMind extends GuessingGame {
     }
 
     // Generates a random secret code
-    private void generateSecretCode() {
+    @Override
+    public void generateSecretCode() {
         Random random = new Random();
         StringBuilder codeBuilder = new StringBuilder();
         for (int i = 0; i < CODE_LENGTH; i++) {

@@ -20,7 +20,7 @@ public abstract class WheelOfFortune extends GuessingGame {
     public GameRecord play() {
         randomPhrase();
         phraseToMap();
-        generateHiddenPhrase();
+        generateSecretCode();
         while (characterLeft > 0) {
             char curGuess = getGuess();
             processGuess(curGuess);
@@ -68,7 +68,8 @@ public abstract class WheelOfFortune extends GuessingGame {
     }
 
     // Generates the initial hidden phrase with masked characters
-    public void generateHiddenPhrase() {
+    @Override
+    public void generateSecretCode() {
         hiddenPhrase.setLength(0);
         for (int i = 0; i < phrase.length(); i++) {
             char cur = phrase.charAt(i);
