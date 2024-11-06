@@ -73,7 +73,7 @@ public class MasterMind extends GuessingGame {
             }
         }
 
-        return new GameRecord(attempts, "Player");
+        return new GameRecord(101 - attempts, "Player");
     }
 
     @Override
@@ -134,12 +134,12 @@ public class MasterMind extends GuessingGame {
         return map;
     }
 
-    // Main method for testing the game
+
     public static void main(String[] args) {
-        MasterMind game = new MasterMind();
-        do {
-            game.play();
-        } while (game.playNext());
-        System.out.println("Thanks for playing MasterMind!");
+        MasterMind masterGame = new MasterMind();
+        AllGamesRecord record = masterGame.playAll();
+        System.out.println(record.highGameList(2));
+        System.out.println(record.average());
+        System.out.println(record);
     }
 }
