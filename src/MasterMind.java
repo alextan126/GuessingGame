@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class MasterMind extends GuessingGame {
-    private static final char[] COLORS = {'R', 'G', 'B', 'Y', 'O', 'P'}; // Allowed colors
+    private static final String COLORS = "RGBYOP"; // Allowed colors
     private static final int CODE_LENGTH = 4; // Length of the secret code
     private String secretCode;
 
@@ -12,12 +12,7 @@ public class MasterMind extends GuessingGame {
     // Generates a random secret code
     @Override
     public void generateSecretCode() {
-        Random random = new Random();
-        StringBuilder codeBuilder = new StringBuilder();
-        for (int i = 0; i < CODE_LENGTH; i++) {
-            codeBuilder.append(COLORS[random.nextInt(COLORS.length)]);
-        }
-        secretCode = codeBuilder.toString();
+        secretCode = super.generateSecretCode(COLORS,CODE_LENGTH);
     }
 
     // Prompts the user for a guess and returns it
@@ -77,27 +72,16 @@ public class MasterMind extends GuessingGame {
         return new GameRecord(101 - attempts, "Player");
     }
 
-    @Override
-    public boolean playNext() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Do you want to play again? (T/F): ");
-        String input = scanner.nextLine().trim().toUpperCase();
-
-        while (!input.equals("T") && !input.equals("F")) {
-            System.out.println("Invalid input. Please enter 'T' for True or 'F' for False.");
-            System.out.print("Do you want to play again? (T/F): ");
-            input = scanner.nextLine().trim().toUpperCase();
-        }
-
-        if(input.equals("T")){
-            reset();
-        }
-        return input.equals("T");
-    }
-
     //reset the game
     private void reset() {
         generateSecretCode();
+    }
+
+    @Override
+     public boolean playNext() {
+        boolean ifNext = super.playNext();
+        if (ifNext) reset();
+        return ifNext;
     }
 
     // Counts exact matches between the guess and the secret code
@@ -117,7 +101,7 @@ public class MasterMind extends GuessingGame {
         Map<Character, Integer> secretCodeMap = buildCharCountMap(secretCode);
         Map<Character, Integer> guessMap = buildCharCountMap(guess);
 
-        for (char color : COLORS) {
+        for (char color : COLORS.toCharArray()) {
             if (guessMap.containsKey(color) && secretCodeMap.containsKey(color)) {
                 count += Math.min(guessMap.get(color), secretCodeMap.get(color));
             }

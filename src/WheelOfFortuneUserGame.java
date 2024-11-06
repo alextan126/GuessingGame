@@ -22,21 +22,13 @@ public class WheelOfFortuneUserGame extends WheelOfFortune{
 
     @Override
     public boolean playNext() {
-        System.out.print("Do you want to play the next game? (T/F): ");
-        String input = scanner.nextLine().trim().toUpperCase();
-
-        // Validate input and prompt if necessary
-        while (!input.equals("T") && !input.equals("F")) {
-            System.out.println("Invalid input. Please enter 'T' for True or 'F' for False.");
-            System.out.print("Do you want to play the next game? (T/F): ");
-            input = scanner.nextLine().trim().toUpperCase();
-        }
-        if(input.equals("T")){
+       boolean ifNext = super.playNext();
+        if(ifNext){
             characterLeft = 0;
             map = new HashMap<>();
             dedupSet = new HashSet<>();
         }
-        return input.equals("T");
+        return ifNext;
     }
 
     public static void main(String [] args) {

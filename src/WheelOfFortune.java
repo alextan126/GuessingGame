@@ -32,8 +32,6 @@ public abstract class WheelOfFortune extends GuessingGame {
         return new GameRecord(score, "PlayerId");
     }
 
-    @Override
-    public abstract boolean playNext();
 
     // Randomly selects a phrase from a file
     public void randomPhrase() {
