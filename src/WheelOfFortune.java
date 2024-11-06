@@ -3,7 +3,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public abstract class WheelOfFortune extends Game {
+public abstract class WheelOfFortune extends GuessingGame {
 
     protected StringBuilder hiddenPhrase = new StringBuilder();
     protected String phrase;
@@ -12,8 +12,8 @@ public abstract class WheelOfFortune extends Game {
     protected Set<Character> dedupSet = new HashSet<>();
     protected static Random rand = new Random();
 
-
-    public abstract char getGuess();
+    @Override
+    public abstract Character getGuess();
 
     // Plays a single game and returns a GameRecord
     @Override

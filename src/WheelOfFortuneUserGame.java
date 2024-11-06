@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class WheelOfFortuneUserGame extends WheelOfFortune{
     Scanner scanner = new Scanner(System.in);
     @Override
-    public char getGuess() {
+    public Character getGuess() {
         System.out.print("Enter your guess (one character): ");
         String input = scanner.nextLine().trim();
 
